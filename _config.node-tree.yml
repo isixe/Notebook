@@ -5,7 +5,9 @@
 # Specify github user for header
 github: isixe
 
-favicon: /favicon.ico
+favicon:
+  light: /favicon.ico
+  dark: /favicon.ico
 
 menu:
   tag:
