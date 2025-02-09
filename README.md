@@ -1,5 +1,5 @@
 <div align=center>
-  <img style="text-align:center" src=https://raw.githubusercontent.com/Exisi/MagicBook/main/favicon.ico width=15% />
+  <img style="text-align:center" src="https://raw.githubusercontent.com/isixe/Notebook/refs/heads/main/source/favicon.ico" width="10%" />
   <h1>MagicBook</h1>
 
 ![Hexo](https://img.shields.io/badge/Hexo-0E83CD?style=for-the-badge&logo=hexo&logoColor=white)
@@ -19,7 +19,7 @@
 
 ### 已归档
 
-- [HTML](https://m.exi.ink/2022/10/20/HTML/HTML/)
-- [MyBatis](https://m.exi.ink/2022/11/27/MyBatis/MyBatis/)
-- [Spring](https://m.exi.ink/2022/11/28/Spring/Spring/)
-- [Spring Boot](https://m.exi.ink/2022/11/28/Spring%20Boot/Spring%20Boot/)
+- [HTML](https://notebook.itea.dev/2022/10/20/HTML/HTML/)
+- [MyBatis](https://notebook.itea.dev/2022/11/27/MyBatis/MyBatis/)
+- [Spring](https://notebook.itea.dev/2022/11/28/Spring/Spring/)
+- [Spring Boot](https://notebook.itea.dev/2022/11/28/Spring%20Boot/Spring%20Boot/)
