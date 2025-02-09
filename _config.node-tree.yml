@@ -1,0 +1,53 @@
+# Node Tree Theme custom Configuration
+## Docs:
+## Source: https://github.com/Exisi/hexo-theme-node-tree
+
+# Specify github user for header
+github: isixe
+
+favicon: /favicon.ico
+
+menu:
+  tag:
+    enable: true
+  category:
+    enable: true
+
+sidebar:
+  # Post title use title or filename, If not defined, default is false (filename).
+  usePostTitle: false
+  search:
+    # If not defined, default is google. Set engines as
+    # https://www.baidu.com/s?wd=
+    # https://www.google.com/search?q=
+    engine: https://www.google.com/search?q=
+
+footer:
+  copyright:
+    # If `author` from Hexo `_config.yml` not defined, will be used.
+    author:
+      name: isixe
+      url: https://github.com/isixe
+    baseYear: 2022
+
+comment:
+  giscus:
+    enable: false
+    enableComment: true
+    repo: isixe/Notebook
+    repoid: R_kgDON2qiKw
+    reactions: 1
+
+analysis:
+  baidu:
+    enable: false
+    src:
+  google:
+    enable: false
+    src:
+    config:
+
+statistics:
+  busuanzi:
+    # Specify to open busuanzi statistics
+    enable: true

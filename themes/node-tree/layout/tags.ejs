@@ -1,0 +1,35 @@
+<%
+	const tag = {
+		 en: {
+            title: "TAG",
+            subtitle: `There is currently a total of ${ site.categories.data.length } ${ site.categories.data.length > 1 ? "tags" : "tag" }`,
+         },
+		 zh: {
+            title: "标签",
+            subtitle: `目前共计 ${ site.tags.data.length } 个标签`,
+         },
+	};
+
+	const language = config.language ? config.language : "en";
+%>
+
+<h1 id="article-title">
+	<i class="fa fa-tags" aria-hidden="true"></i><%- tag[language].title %>
+</h1>
+<h2 id="article-title">
+	<%- tag[language].subtitle %>
+</h2>
+
+<div id="article-content">
+	<ul>
+      <% for (var j=0; j < site.tags.data.length; j++) { %>
+          <% if (site.tags.data[j] && site.tags.data[j].name) { %>
+            <li class="menu-item">
+                <span>
+                      <a href="/<%- site.tags.data[j].path %>"><%- site.tags.data[j].name %>(<%- site.tags.data[j].length %>)</a>
+                </span>
+            </li>
+          <% } %>
+      <% } %>
+	</ul>
+</div>
