@@ -1,12 +1,12 @@
 <div align=center>
-  <img style="text-align:center" src=https://raw.githubusercontent.com/Exisi/MagicBook/main/favicon.ico width=15% />
+  <img style="text-align:center" src="https://raw.githubusercontent.com/Exisi/hexo-theme-node-tree/main/source/favicon.ico" width="15%" />
   <h1>Node-Tree</h1>
 
 <p>Node-Tree is a simple node tree directory theme, focus on notes record</p>
 
 Demo: [MagicBook](https://m.exi.ink)
 
-Docs: English | [Chinese](https://github.com/Exisi/hexo-theme-node-tree/blob/main/README-CN.md)
+Docs: English | [中文](https://github.com/Exisi/hexo-theme-node-tree/blob/main/README-CN.md)
 
 </div>
 
@@ -19,7 +19,7 @@ $ cd hexo
 $ git clone https://github.com/Exisi/hexo-theme-node-tree themes/node-tree
 ```
 
-Or you can download the [latest Release]() manually, and then put it in theme directory
+Or you can download the [latest Release](https://github.com/Exisi/hexo-theme-node-tree/releases) manually, and then put it in theme directory
 
 Set the `_config.yml` theme
 
@@ -45,7 +45,9 @@ By default, the theme is default configuration for some configurations. If you n
 Create the `_config.node-tree.yml` file in Hexo root directory, and copy the follow configuration.
 
 ```
-favicon: /favicon.ico
+favicon:
+  light: /favicon-white.ico
+  dark: /favicon.ico
 
 # Specify github user for header（username）
 github:

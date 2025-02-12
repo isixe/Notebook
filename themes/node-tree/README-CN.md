@@ -6,7 +6,7 @@
 
 Demo: [MagicBook](https://m.exi.ink)
 
-Docs: [English](https://github.com/Exisi/hexo-theme-node-tree/blob/main/README.md) | Chinese
+Docs: [English](https://github.com/Exisi/hexo-theme-node-tree/blob/main/README.md) | 中文
 
 </div>
 
@@ -19,7 +19,7 @@ $ cd hexo
 $ git clone https://github.com/Exisi/hexo-theme-node-tree themes/node-tree
 ```
 
-或着您可以手动下载主题的[最新发行版]()，并将它放到主题目录
+或着您可以手动下载主题的[最新发行版](https://github.com/Exisi/hexo-theme-node-tree/releases)，并将它放到主题目录
 
 接着，设置 `_config.yml` 中的主题为 node-tree
 
@@ -45,7 +45,9 @@ $ git pull
 然后在 Hexo 根目录中创建 `_config.node-tree.yml` 文件，然后复制以下配置。
 
 ```
-favicon: /favicon.ico
+favicon:
+  light: /favicon-white.ico
+  dark: /favicon.ico
 
 # Specify github user for header（username）
 github:
