@@ -125,10 +125,16 @@ post:
 comment:
   giscus:
     enable: true
-    enableComment: true
     repo: isixe/Notebook
-    repoid: R_kgDON2qiKw
-    reactions: 1
+    repo_id: R_kgDON2qiKw
+    category: General
+    category_id: DIC_kwDON2qiK84Cmy0A
+    mapping: title
+    strict: 0
+    reactions_enabled: 1
+    emit_metadata: 0
+    input_position: top
+    theme: preferred_color_scheme
 
 #------------------------------------------------------
 # 是否启用网站分析，支持谷歌和百度分析
