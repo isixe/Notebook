@@ -124,7 +124,7 @@ post:
 #------------------------------------------------------
 comment:
   giscus:
-    enable: false
+    enable: true
     enableComment: true
     repo: isixe/Notebook
     repoid: R_kgDON2qiKw
