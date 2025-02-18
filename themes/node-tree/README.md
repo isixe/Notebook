@@ -140,14 +140,21 @@ footer:
 
 #------------------------------------------------------
 # Post comment, support giscus
+# see: https://giscus.app/
 #------------------------------------------------------
 comment:
   giscus:
     enable: false
-    enableComment: true
     repo:
-    repoid:
-    reactions:
+    repo_id:
+    category:
+    category_id:
+    mapping:
+    strict:
+    reactions_enabled:
+    emit_metadata:
+    input_position:
+    theme:
 
 #------------------------------------------------------
 # Enable Website Analytics, Supporting Google and Baidu Analytics

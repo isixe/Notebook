@@ -140,14 +140,21 @@ footer:
 
 #------------------------------------------------------
 # 文章评论，支持 giscus
+# 相关配置: https://giscus.app/
 #------------------------------------------------------
 comment:
   giscus:
     enable: false
-    enableComment: true
     repo:
-    repoid:
-    reactions:
+    repo_id:
+    category:
+    category_id:
+    mapping:
+    strict:
+    reactions_enabled:
+    emit_metadata:
+    input_position:
+    theme:
 
 #------------------------------------------------------
 # 是否启用网站分析，支持谷歌和百度分析
