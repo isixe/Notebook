@@ -37,6 +37,10 @@ header:
   github:
     enable: true
     url: 'https://github.com/isixe'
+  # 是否启用关于菜单
+  # Enable about menu
+  about:
+    enable: true
   # 是否启用黑暗模式
   # Enable dark model menu
   darkMode:
@@ -74,8 +78,7 @@ footer:
   # 版权声明，会显示在每个界面的结尾
   # Copyright, will be displayed at the end of each page
   copyright:
-    enable: false
-    author: isixe
+    enable: true
     url: https://github.com/isixe
     baseYear: 2022
 
@@ -99,7 +102,7 @@ post:
     # CreativeCommons license
     # See: https://creativecommons.org/share-your-work/cclicenses/
     # Options: BY | BY-SA | BY-ND | BY-NC | BY-NC-SA | BY-NC-ND | ZERO
-    license: 'BY'
+    license: 'BY-NC-SA'
 
     # 显示作者
     # Show author
