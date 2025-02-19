@@ -564,6 +564,7 @@ function pureFetchLoading(url) {
 			}
 			wrapImageWithLightBox();
 			reloadComment();
+			reloadHeadScript();
 		})
 		.catch((error) => console.error("Error loading content:", error));
 }
@@ -588,6 +589,29 @@ function reloadComment() {
 			curComment.appendChild(newScript);
 		}
 	}
+}
+
+/**
+ * Reload web analysis when page pure loading
+ */
+function reloadHeadScript() {
+	const head = document.head;
+	const scripts = head.querySelectorAll("script");
+	scripts.forEach((script) => {
+		const parentElement = script.parentElement;
+		if (parentElement) {
+			const newScript = document.createElement("script");
+			newScript.innerHTML = script.innerHTML;
+			for (const { name, value } of script.attributes) {
+				newScript.setAttribute(name, value);
+			}
+			const src = newScript.getAttribute("src") || "";
+			if (!src.includes("main.js")) {
+				parentElement.removeChild(script);
+				parentElement.appendChild(newScript);
+			}
+		}
+	});
 }
 
 /**
@@ -672,7 +696,7 @@ function searchTreeNode() {
 		if (e.code === "Enter") {
 			const inputContent = e.currentTarget.value;
 			if (inputContent) {
-				window.open(searchEngine + inputContent + "%20site:" + homeHost, "_blank");
+				window.open(window.searchEngine + inputContent + "%20site:" + window.homeHost, "_blank");
 			}
 		}
 	});
