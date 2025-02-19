@@ -81,7 +81,6 @@ footer:
     enable: true
     url: https://github.com/isixe
     baseYear: 2022
-
   # 展示网站的 PV、UV 统计数
   # Display website PV and UV statistics
   statistics:
@@ -98,23 +97,19 @@ post:
   # Copyright, will be displayed at the end of each post
   copyright:
     enable: true
-
     # CreativeCommons license
     # See: https://creativecommons.org/share-your-work/cclicenses/
     # Options: BY | BY-SA | BY-ND | BY-NC | BY-NC-SA | BY-NC-ND | ZERO
     license: 'BY-NC-SA'
-
     # 显示作者
     # Show author
     author:
       enable: true
-
     # 显示发布日期
     # Show post date
     post_date:
       enable: true
       format: "LL"
-
     # 显示更新日期
     # Show update date
     update_date:
@@ -126,6 +121,9 @@ post:
 # Post comment, Supporting giscus
 #------------------------------------------------------
 comment:
+  # 基于 GitHub Discussions
+  # Based on GitHub Discussions, similar to Utterances
+  # See: https://giscus.app/
   giscus:
     enable: true
     repo: isixe/notebook
@@ -144,10 +142,15 @@ comment:
 # Enable Website Analytics, Supporting Google and Baidu Analytics
 #------------------------------------------------------
 analysis:
+  # 百度统计的 Key，值需要获取下方链接中 `hm.js?` 后边的字符串
+  # Baidu analytics, get the string behind `hm.js?`
+  # See: https://tongji.baidu.com/sc-web/10000033910/home/site/getjs?siteId=13751376
   baidu:
     enable: false
-    src:
+    hm: ''
+  # Google Analytics 4 的媒体资源 ID
+  # Google Analytics 4 MEASUREMENT_ID
+  # See: https://support.google.com/analytics/answer/9744165#zippy=%2Cin-this-article
   google:
-    enable: false
-    src:
-    config:
+    enable: true
+    id: G-RY8Z9NZS9Z
