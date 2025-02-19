@@ -1,10 +1,7 @@
 window.onload = function () {
 	// hljs.initHighlightingOnLoad();
-	switchDarkMode();
 
 	wrapImageWithLightBox();
-	scrollToTop();
-	pageScroll();
 
 	treeNodeDirClickEvent();
 	switchTreeOrIndex();
@@ -17,33 +14,6 @@ window.onload = function () {
 
 	searchTreeNode();
 };
-
-/**
- * Switch dark mode.
- */
-function switchDarkMode() {
-	const localModel = localStorage.getItem("darkModel");
-	const darkModel = !localModel ? 0 : localModel;
-
-	const darkModeIcon = document.querySelector("#menu .dark-mode i");
-
-	if (darkModel == 1) {
-		darkModeIcon.classList.replace("fa-moon-o", "fa-sun-o");
-		DarkReader.enable({
-			brightness: 100,
-			contrast: 90,
-			sepia: 10,
-		});
-	}
-
-	darkModeIcon.addEventListener("click", () => {
-		const isMoon = darkModeIcon.classList.contains("fa-moon-o");
-		darkModeIcon.classList.toggle("fa-moon-o", !isMoon);
-		darkModeIcon.classList.toggle("fa-sun-o", isMoon);
-		localStorage.setItem("darkModel", isMoon ? 1 : 0);
-		isMoon ? DarkReader.enable({ brightness: 100, contrast: 90, sepia: 10 }) : DarkReader.disable();
-	});
-}
 
 /**
  * Wrap images with light box support.
@@ -214,29 +184,6 @@ function toggleSidebar(state) {
 		header.className = headerClass;
 		footer.className = footerClass;
 	}
-}
-
-/**
- * Scroll to top.
- */
-function scrollToTop() {
-	const topTopBtn = document.querySelector("#totop-toggle");
-	topTopBtn.addEventListener("click", () => {
-		window.scrollTo({ top: 0, behavior: "smooth" });
-	});
-}
-
-/**
- * Header scroll event.
- */
-function pageScroll() {
-	let startHeight = 0;
-	window.addEventListener("scroll", () => {
-		const { scrollY: endHeight } = window;
-		const distance = endHeight - startHeight;
-		startHeight = endHeight;
-		document.querySelector("#header").style.display = distance > 0 && endHeight > 50 ? "none" : "";
-	});
 }
 
 /**

@@ -37,6 +37,10 @@ header:
   github:
     enable: true
     url: ''
+  # 是否启用关于菜单
+  # Enable about menu
+  about:
+    enable: true
   # 是否启用黑暗模式
   # Enable dark model menu
   darkMode:
@@ -66,24 +70,20 @@ post:
   # Copyright, will be displayed at the end of each post
   copyright:
     enable: true
-
     # 知识共享许可协议
     # CreativeCommons license
     # See: https://creativecommons.org/share-your-work/cclicenses/
     # Options: BY | BY-SA | BY-ND | BY-NC | BY-NC-SA | BY-NC-ND | ZERO
     license: 'BY'
-
     # 显示作者
     # Show author
     author:
       enable: true
-
     # 显示发布日期
     # Show post date
     post_date:
       enable: true
       format: "LL"
-
     # 显示更新日期
     # Show update date
     update_date:
@@ -112,7 +112,6 @@ footer:
     enable: true
     url: ''
     baseYear: 2024
-
   # 展示网站的 PV、UV 统计数
   # Display website PV and UV statistics
   statistics:
