@@ -128,10 +128,10 @@ post:
 comment:
   giscus:
     enable: true
-    repo: isixe/Notebook
+    repo: isixe/notebook
     repo_id: R_kgDON2qiKw
     category: General
-    category_id: DIC_kwDON2qiK84Cmy0A
+    category_id: DIC_kwDON2qiK84Cmyz_
     mapping: title
     strict: 0
     reactions_enabled: 1
