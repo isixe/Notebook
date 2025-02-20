@@ -7,7 +7,6 @@ window.onload = function () {
 	switchTreeOrIndex();
 	toggleTreeNodes();
 
-	pureFetchLoading();
 	setupNavigation();
 
 	activeArticleToc();
@@ -606,7 +605,8 @@ function reloadHeadScript() {
 				newScript.setAttribute(name, value);
 			}
 			const src = newScript.getAttribute("src") || "";
-			if (!src.includes("main.js")) {
+			const isExcluded = !["main.js", "darkreader"].some((substring) => src.includes(substring));
+			if (isExcluded) {
 				parentElement.removeChild(script);
 				parentElement.appendChild(newScript);
 			}
@@ -620,7 +620,7 @@ function reloadHeadScript() {
 function setupNavigation() {
 	document.addEventListener("click", function (e) {
 		const target = e.target.closest("a");
-		if (target && target.matches("#menu a, #tree a, #index a")) {
+		if (target && target.matches("#menu a, #tree a[href], #index a")) {
 			e.preventDefault();
 			const url = target.href;
 			history.pushState(null, "", url);
