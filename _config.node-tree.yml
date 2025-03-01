@@ -60,6 +60,31 @@ sidebar:
     engine: https://www.google.com/search?q=
 
 #------------------------------------------------------
+# 代码块的增强配置
+# Enhancements to code blocks
+#------------------------------------------------------
+code:
+  # 代码高亮
+  # Code highlight
+  highlight:
+    highlightcss:
+      # 在链接中挑选样式填入
+      # Select a style in the link
+      # See: https://highlightjs.org/static/demo/
+      style: "tokyo-night-dark"
+    prismcss:
+      # 在链接中挑选样式填入
+      # Select a style in the link
+      # See: https://prismjs.com/
+      style: "prism"
+  # 代码复制按钮
+  # Code copy button
+  copyBtn:
+    # 是否开启复制代码的按钮
+    # Enable copy code button
+    enable: true
+
+#------------------------------------------------------
 # 页脚配置
 # Footer Settings
 #------------------------------------------------------
