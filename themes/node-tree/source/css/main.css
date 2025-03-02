@@ -5,7 +5,8 @@
 }
 
 html {
-	font-family: microsoft yahei, helvetica, simhei, simsun, sans-serif;
+	font-family: Microsoft YaHei, Segoe UI, Helvetica, sans-serif, simhei, simsun, -apple-system,
+		BlinkMacSystemFont, Apple Color Emoji, Segoe UI Emoji;
 }
 
 a {
@@ -188,6 +189,7 @@ ul li a {
 	color: rgb(122, 122, 122);
 	border-bottom: 1px solid #ccc;
 }
+#sidebar ul li.active a,
 #sidebar ul li .active a {
 	color: #9cc7b8;
 	border-bottom: 1px solid #9cc7b8;
@@ -386,7 +388,8 @@ ul li a {
 #article-content p {
 	line-height: 32px;
 }
-#article-content figure.highlight:has(.code) {
+#article-content figure.highlight.hljs:has(.code),
+#article-content figure.highlight:has(.code):not(.hljs) {
 	border-radius: 5px;
 	box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.4);
 	padding: 38px 0 15px 0;
@@ -395,6 +398,9 @@ ul li a {
 	table-layout: fixed;
 	width: 100%;
 	overflow: auto;
+}
+#article-content figure.highlight.hljs:has(.code) {
+	padding: 38px 0 5px 0;
 }
 #article-content figure.highlight.hljs:has(.code) table:has(.keyword, .title, .function, .string),
 #article-content figure.highlight:not(.hljs) table:has(.code) {
@@ -418,8 +424,11 @@ ul li a {
 #article-content pre.line-numbers > code {
 	position: unset;
 }
-#article-content figure.highlight table {
+#article-content figure.highlight:not(.hljs) table:has(.gutter.hljs) {
 	margin-bottom: 20px;
+}
+#article-content figure.highlight table:has(.gutter.highlight) {
+	margin-bottom: 10px;
 }
 #article-content figure.highlight td.gutter pre {
 	text-align: right;
@@ -460,6 +469,13 @@ ul li a {
 	cursor: pointer;
 }
 
+#comment {
+	margin-top: 20px;
+}
+
+.post-guide {
+	display: flex;
+}
 .post-guide .item {
 	width: 50%;
 	display: -webkit-box;

@@ -1,13 +1,13 @@
 <% if (config.highlight.enable || config.syntax_highlighter === 'highlight.js') { %>
     <% if (!config.highlight.line_number && !config.highlight.wrap) { %>
         <%- css(`https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/${theme.code.highlight.highlightcss.style}.css`) %>
-        <%- js('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js') %>
-        <script async>hljs.highlightAll();</script>
+        <script reload src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js'></script>
+        <script reload>hljs.highlightAll();</script>
     <% } %>
 
     <% if (!config.highlight.line_number && config.highlight.wrap) { %>
         <% const url = `https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/${theme.code.highlight.highlightcss.style}.css`; %>
-        <script async>
+        <script async reload>
             fetch("<%= url %>")
                 .then((response) => response.text())
                 .then((cssContent) => {
@@ -16,11 +16,10 @@
                         cssContent = cssContent
                             .replace(".hljs-code,", "")
                             .replaceAll("_", " ")
-                            .replaceAll(".hljs-", ".")
+                            .replaceAll(".hljs-", ".").replaceAll(".hljs", " .highlight")
                             .replaceAll(".built in", ".built_in")
                             .replaceAll("title.", "");
                     <% } %>
-                    document.querySelector("figure.highlight").classList.add("hljs");
                     style.innerHTML = cssContent;
                     document.head.appendChild(style);
                 })
@@ -31,8 +30,8 @@
     <% } %>
 
     <% if (config.highlight.line_number) { %>
-        <% const url = `https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/${theme.code.highlight.highlightcss.style}.css`; %>
-        <script async>
+        <% var url = `https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/${theme.code.highlight.highlightcss.style}.css`; %>
+        <script async reload>
             fetch("<%= url %>")
                 .then((response) => response.text())
                 .then((cssContent) => {
@@ -45,10 +44,19 @@
                             .replaceAll(".hljs", " .highlight")
                             .replaceAll(".built in", ".built_in")
                             .replaceAll("title.", "");
-                        document.querySelector("figure.highlight td.gutter").classList.add("highlight");
+                        const figures = document.querySelectorAll("figure.highlight td.gutter");
+                        figures.forEach(figure=>{
+                            figure.classList.add("highlight");
+                        })
                     <% } else{ %>
-                        document.querySelector("figure.highlight td.gutter").classList.add("hljs");
-                        document.querySelector("figure.highlight").classList.add("hljs");
+                        const gutters = document.querySelectorAll("figure.highlight td.gutter");
+                        gutters.forEach(gutter=>{
+                            gutter.classList.add("hljs")
+                        });
+                        const figures = document.querySelectorAll("figure.highlight");
+                        figures.forEach(figure=>{
+                            figure.classList.add("hljs");
+                        });
                     <% } %>
                     style.innerHTML = cssContent;
                     document.head.appendChild(style);
@@ -62,23 +70,23 @@
 
 <% if (config.prismjs.enable || config.syntax_highlighter === 'prismjs') { %>
     <%- css(`https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/${theme.code.highlight.prismcss.style}.css`) %>
-    <%- js('https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js') %>
+    <script reload src='https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js'></script>
 
     <% if (config.prismjs.line_number) { %>
         <%- css('https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css') %>
-        <%- js('https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js') %>
+        <script reload src='https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js'></script>
     <% } %>
 <% } %>
 
 <% if (theme.code.copyBtn.enable) { %>
-    <script async>
-        const targets = document.querySelectorAll("figure.highlight, #article-content > pre:not(.highlight,.hljs)");
+    <script reload>
+        var targets = document.querySelectorAll("figure.highlight, #article-content > pre:not(.highlight,.hljs)");
         targets.forEach((block) => {
             const copyBtn = document.createElement("button");
             copyBtn.innerHTML = `<i class="fa fa-clone" aria-hidden="true"></i>`;
             copyBtn.className = "code-copy";
 
-            <% if (config.syntax_highlighter && config.syntax_highlighter !== 'prismjs' ) { %>
+            <% if ((config.syntax_highlighter && config.syntax_highlighter !== 'prismjs' ) || (config.highlight.enable && !config.prismjs.enable)) { %>
                 copyBtn.style.color = "#fff";
             <% } %>
 

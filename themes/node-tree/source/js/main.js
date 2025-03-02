@@ -194,7 +194,8 @@ function treeNodeDirClickEvent() {
 	}
 
 	document.addEventListener("click", function (e) {
-		if (e.target.matches("#tree a")) {
+		if (e.target.matches("#tree li.file > a, #tree li.directory > a")) {
+			e.preventDefault();
 			toggleActiveNodeTree(e.target);
 		}
 	});
@@ -517,20 +518,17 @@ function pureFetchLoading(url) {
 			document.title = doc.title;
 			document.querySelector("#tree .active")?.classList.remove("active");
 
-			const fullTitle = decodeURI(window.location.pathname).slice(1, -1).split("/");
-			fullTitle.splice(0, 3);
-			const title = fullTitle.join("/");
-
+			const title = decodeURI(window.location.pathname).slice(0, -1);
 			if (title.length) {
-				let searchResult = document.querySelectorAll("#tree li.file a[title='" + title + "']");
-				if (searchResult.length) {
+				let treeNodes = document.querySelectorAll(`#tree li.file a[title='${title}']`);
+				if (treeNodes.length) {
 					document.querySelectorAll(".fa-minus-square-o").forEach((icon) => {
 						icon.classList.replace("fa-minus-square-o", "fa-plus-square-o");
 					});
 					document.querySelectorAll("#tree ul").forEach((ul) => {
 						ul.style.display = "none";
 					});
-					if (searchResult.length > 1) {
+					if (treeNodes.length > 1) {
 						const categories = document
 							.querySelector("#article-categories span:last-child a")
 							?.innerHTML.trim();
@@ -538,58 +536,34 @@ function pureFetchLoading(url) {
 							const directoryList = document.querySelectorAll(
 								"#tree li.directory a:contains('" + categories + "')"
 							);
-							searchResult = Array.from(directoryList)
-								.map((el) => el.nextElementSibling.querySelector("a[title='" + title + "']"))
+							treeNodes = Array.from(directoryList)
+								.map((el) => el.nextElementSibling.querySelector(`a[title='${title}']`))
 								.filter((el) => el);
 						}
 					}
-					searchResult[0].parentNode.classList.add("active");
+					treeNodes[0].parentNode.classList.add("active");
 
 					const activeNode = document.querySelector("#tree .active");
 					showActiveNodeChildren(activeNode, true);
 				}
 
-				if (!searchResult.length) {
-					searchResult = document.querySelectorAll("#tree li.directory a[title='" + title + "']");
-					searchResult[0].classList.add("active");
+				if (!treeNodes.length) {
+					const treeNode = document.querySelector(`#tree li.directory a[title='${title}']`);
+					treeNode.classList.add("active");
 				}
 				activeArticleToc();
 			}
 			wrapImageWithLightBox();
-			reloadComment();
-			reloadHeadScript();
+			reloadMarkScript();
 		})
 		.catch((error) => console.error("Error loading content:", error));
 }
 
 /**
- * Reload comment when page pure loading
- */
-function reloadComment() {
-	const curComment = document.querySelector("#comment");
-	if (curComment) {
-		const curScript = curComment.querySelector("script");
-		if (curScript) {
-			const newScript = document.createElement("script");
-			newScript.src = curScript.src;
-			newScript.innerHTML = curScript.innerHTML;
-
-			for (const { name, value } of curScript.attributes) {
-				newScript.setAttribute(name, value);
-			}
-
-			curComment.innerHTML = "";
-			curComment.appendChild(newScript);
-		}
-	}
-}
-
-/**
  * Reload web analysis when page pure loading
  */
-function reloadHeadScript() {
-	const head = document.head;
-	const scripts = head.querySelectorAll("script");
+function reloadMarkScript() {
+	const scripts = document.querySelectorAll("script[reload]");
 	scripts.forEach((script) => {
 		const parentElement = script.parentElement;
 		if (parentElement) {
@@ -598,12 +572,8 @@ function reloadHeadScript() {
 			for (const { name, value } of script.attributes) {
 				newScript.setAttribute(name, value);
 			}
-			const src = newScript.getAttribute("src") || "";
-			const isExcluded = !["main.js", "darkreader"].some((substring) => src.includes(substring));
-			if (isExcluded) {
-				parentElement.removeChild(script);
-				parentElement.appendChild(newScript);
-			}
+			parentElement.removeChild(script);
+			parentElement.appendChild(newScript);
 		}
 	});
 }
@@ -614,7 +584,10 @@ function reloadHeadScript() {
 function setupNavigation() {
 	document.addEventListener("click", function (e) {
 		const target = e.target.closest("a");
-		if (target && target.matches("#menu a, #tree a[href], #index a")) {
+		if (
+			target &&
+			target.matches("#menu a, #index a, #tree li.file > a[href], #tree li.directory > a[href]")
+		) {
 			e.preventDefault();
 			const url = target.href;
 			history.pushState(null, "", url);
@@ -663,13 +636,13 @@ function searchTreeNode() {
 			ul.style.display = "none";
 		});
 
-		const searchResultNode = document.querySelectorAll("#tree li a");
-		const searchResult = Array.from(searchResultNode).filter((node) => {
+		const treeNodeLinks = document.querySelectorAll("#tree li a");
+		const searchResultNodes = Array.from(treeNodeLinks).filter((node) => {
 			return node.textContent.includes(inputContent);
 		});
 
-		if (searchResult.length) {
-			searchResult.forEach((result) => {
+		if (searchResultNodes.length) {
+			searchResultNodes.forEach((result) => {
 				toggleActiveNodeTree(result);
 				showActiveNodeChildren(result.parentElement, false);
 
