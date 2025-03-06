@@ -101,7 +101,7 @@ code:
       style: "tokyo-night-dark"
     prismcss:
       # Select a style in the link
-      # See: https://prismjs.com/
+      # See: https://github.com/PrismJS/prism-themes?#available-themes
       style: "prism"
   # Code copy button
   copyBtn:
@@ -123,11 +123,11 @@ post:
     author:
       enable: true
     # Show post date
-    post_date:
+    postDate:
       enable: true
       format: "LL"
     # Show update date
-    update_date:
+    updateDate:
       enable: false
       format: "LL"
 

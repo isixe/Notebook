@@ -102,7 +102,7 @@ code:
       style: "tokyo-night-dark"
     prismcss:
       # 在链接中挑选样式填入
-      # 主题样式: https://prismjs.com/
+      # 主题样式: https://github.com/PrismJS/prism-themes?#available-themes
       style: "prism"
   # 代码复制按钮
   copyBtn:
@@ -124,11 +124,11 @@ post:
     author:
       enable: true
     # 显示发布日期
-    post_date:
+    postDate:
       enable: true
       format: "LL"
     # 显示更新日期
-    update_date:
+    updateDate:
       enable: false
       format: "LL"
 

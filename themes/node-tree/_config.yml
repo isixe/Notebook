@@ -77,7 +77,7 @@ code:
     prismcss:
       # 在链接中挑选样式填入
       # Select a style in the link
-      # See: https://prismjs.com/
+      # See: https://github.com/PrismJS/prism-themes?#available-themes
       style: "prism"
   # 代码复制按钮
   # Code copy button
@@ -106,12 +106,12 @@ post:
       enable: true
     # 显示发布日期
     # Show post date
-    post_date:
+    postDate:
       enable: true
       format: "LL"
     # 显示更新日期
     # Show update date
-    update_date:
+    updateDate:
       enable: false
       format: "LL"
 
