@@ -4,13 +4,16 @@
 
 <p>Node-Tree is a simple node tree directory theme, focus on notes record</p>
 
-Demo: [MagicBook](https://m.exi.ink)
+Demo: [Node Tree Demo](https://exisi.github.io/hexo-theme-node-tree/en/Quick%20Start/)
 
 Docs: English | [中文](https://github.com/Exisi/hexo-theme-node-tree/blob/main/README-CN.md)
 
 </div>
 
 Based on [tree](https://github.com/wujun234/hexo-theme-tree) theme.
+
+### Preview
+![preview](https://github.com/Exisi/hexo-theme-node-tree/blob/preview/doc/preview.png?raw=true)
 
 ### Installation
 
@@ -42,7 +45,7 @@ By default, the theme is default configuration for some configurations. If you n
 
 #### Theme configuration
 
-Create the `_config.node-tree.yml` file in Hexo root directory, and copy the follow configuration.
+Create the `_config.node-tree.yml` file in Hexo root directory, and copy the follow configuration. For detailed configuration, please refer to the [document](https://exisi.github.io/hexo-theme-node-tree/en/Quick%20Start/).
 
 ```
 #---------------------------
@@ -55,6 +58,27 @@ Create the `_config.node-tree.yml` file in Hexo root directory, and copy the fol
 favicon:
   light: /favicon-white.ico
   dark: /favicon.ico
+
+#------------------------------------------------------
+# Custom CSS and JS
+#------------------------------------------------------
+custom:
+  css:
+    # List of css file
+    path:
+  js:
+    # The script that will be loaded only once when the page is loaded.
+    base:
+      # Whether to load async
+      async: false
+      # List of js file
+      path:
+    # The script that will be reloaded when the page is change.
+    reload:
+      # Whether to load async
+      async: true
+      # List of js file
+      path:
 
 #------------------------------------------------------
 # Header menu Settings
@@ -183,7 +207,7 @@ comment:
 #------------------------------------------------------
 analytics:
   # Baidu analytics, get the string behind `hm.js?`
-  # See: https://tongji.baidu.com/sc-web/10000033910/home/site/getjs?siteId=13751376
+  # See: https://tongji.baidu.com/
   baidu:
     enable: false
     hm: ''

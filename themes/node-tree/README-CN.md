@@ -4,13 +4,16 @@
 
 <p>节点树是一个简单的节点树目录主题，专注于笔记记录</p>
 
-Demo: [MagicBook](https://m.exi.ink)
+Demo: [Node Tree Demo](https://exisi.github.io/hexo-theme-node-tree/zh-CN/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/)
 
 Docs: [English](https://github.com/Exisi/hexo-theme-node-tree/blob/main/README.md) | 中文
 
 </div>
 
 基于 [tree](https://github.com/wujun234/hexo-theme-tree) 主题.
+
+### 预览
+![preview](https://github.com/Exisi/hexo-theme-node-tree/blob/preview/doc/preview-zh-CN.png?raw=true)
 
 ### 安装
 
@@ -42,7 +45,7 @@ $ git pull
 
 #### 主题配置
 
-然后在 Hexo 根目录中创建 `_config.node-tree.yml` 文件，然后复制以下配置。
+然后在 Hexo 根目录中创建 `_config.node-tree.yml` 文件，然后复制以下配置。详细配置请参考[文档](https://exisi.github.io/hexo-theme-node-tree/zh-CN/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/)。
 
 ```
 #---------------------------
@@ -55,6 +58,27 @@ $ git pull
 favicon:
   light: /favicon-white.ico
   dark: /favicon.ico
+
+#------------------------------------------------------
+# 自定义 CSS 和 JS
+#------------------------------------------------------
+custom:
+  css:
+    # css 文件路径列表
+    path:
+  js:
+    # 只在初次页面加载的脚本
+    base:
+      # 是否异步加载
+      async: false
+      # js文件路径列表
+      path:
+    # 页面更新时将会重新加载的脚本
+    reload:
+      # 是否异步加载
+      async: true
+      # js文件路径列表
+      path:
 
 #------------------------------------------------------
 # 标题菜单配置
@@ -184,7 +208,7 @@ comment:
 #------------------------------------------------------
 analytics:
   # 百度统计的 Key，值需要获取下方链接中 `hm.js?` 后边的字符串
-  # 相关配置: https://tongji.baidu.com/sc-web/10000033910/home/site/getjs?siteId=13751376
+  # 相关配置: https://tongji.baidu.com/
   baidu:
     enable: false
     hm: ''

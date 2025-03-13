@@ -198,6 +198,8 @@ function treeNodeDirClickEvent() {
 		if (e.target.matches("#tree li.file > a, #tree li.directory > a")) {
 			e.preventDefault();
 			toggleActiveNodeTree(e.target);
+			const toggleAllNodeBtns = document.querySelectorAll("#tree .fa-caret-up");
+			toggleAllNodeBtns.forEach((btn) => btn.classList.replace("fa-caret-up", "fa-caret-down"));
 		}
 	});
 }
@@ -239,7 +241,9 @@ function activeArticleToc() {
 		tocNode.classList.remove("active-toc");
 	});
 
-	const activeLi = document.querySelector("#tree li.file.active");
+	const activeLi = document.querySelector(
+		"#tree li.file.active, #tree li.directory .directory.active"
+	);
 
 	if (!activeLi) {
 		return;
@@ -256,10 +260,12 @@ function activeArticleToc() {
 	const stack = [];
 	labelNodeList.forEach((label) => {
 		const level = parseInt(label.tagName.slice(1), 10);
-		const title = label.id;
+		const id = label.id;
+		const title = label.querySelector("a").getAttribute("title");
 
 		const tocItem = {
 			level,
+			id,
 			title,
 			children: [],
 		};
@@ -280,7 +286,7 @@ function activeArticleToc() {
 		tocJson.forEach((item) => {
 			const li = document.createElement("li");
 			const a = document.createElement("a");
-			a.href = `#${item.title}`;
+			a.href = `#${item.id}`;
 			a.textContent = item.title;
 			li.appendChild(a);
 
@@ -398,25 +404,26 @@ function toggleTreeNodes() {
 		treeUl.prepend(beforeEl);
 
 		beforeEl.addEventListener("click", () => {
-			const branches = treeUl.querySelectorAll("a.directory i");
-
-			if (this.classList.contains("fa-caret-down")) {
-				this.classList.replace("fa-caret-down", "fa-caret-up");
+			const branches = treeUl.querySelectorAll("li.directory .fa");
+			if (beforeEl.classList.contains("fa-caret-down")) {
+				beforeEl.classList.replace("fa-caret-down", "fa-caret-up");
 
 				Array.from(branches).forEach((branch) => {
 					if (!branch.classList.contains("fa-minus-square-o")) {
-						branch.click();
+						const targetNode = branch.closest("li.directory");
+						toggleActiveNodeTree(targetNode);
 					}
 				});
 				return;
 			}
 
-			this.classList.remove("fa-caret-up");
-			this.classList.add("fa-caret-down");
+			beforeEl.classList.remove("fa-caret-up");
+			beforeEl.classList.add("fa-caret-down");
 
 			branches.forEach((branch) => {
 				if (!branch.classList.contains("fa-plus-square-o")) {
-					branch.click();
+					const targetNode = branch.closest("li.directory");
+					toggleActiveNodeTree(targetNode);
 				}
 			});
 		});
@@ -557,7 +564,7 @@ function pureFetchLoading(url) {
 
 				if (!treeNodes.length) {
 					const treeNode = document.querySelector(`#tree li.directory a[title='${title}']`);
-					treeNode.classList.add("active");
+					treeNode?.classList.add("active");
 				}
 				activeArticleToc();
 			}
@@ -594,7 +601,9 @@ function setupNavigation() {
 		const target = e.target.closest("a");
 		if (
 			target &&
-			target.matches("#menu a, #index a, #tree li.file > a[href], #tree li.directory > a[href]")
+			target.matches(
+				"#menu a, #index a, #tree li.file > a[href], #tree li.directory > a[href], .post-guide a"
+			)
 		) {
 			e.preventDefault();
 			const url = target.href;

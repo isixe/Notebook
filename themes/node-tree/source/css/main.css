@@ -34,7 +34,7 @@ a {
 	background: #7e8795;
 	z-index: 98;
 	display: flex;
-	align-items: baseline;
+	align-items: center;
 	justify-content: space-between;
 	box-shadow: 0 4px 1px rgba(0, 0, 0, 0.15);
 }
@@ -63,10 +63,10 @@ a.active {
 
 #menu {
 	position: fixed;
-	padding-right: 20px;
-	top: 3px;
+	padding-right: 10px;
 	right: 0px;
 	display: flex;
+	align-items: center;
 }
 #menu .menu-item {
 	display: inline-block;
@@ -180,7 +180,7 @@ a.active {
 	white-space: nowrap;
 }
 
-#sidebar ul li a {
+#sidebar ul li a:not(.active) {
 	color: #454545;
 	font-size: 14px;
 }
@@ -329,6 +329,40 @@ a.active {
 	margin-top: 0;
 	margin-bottom: 16px;
 }
+#article-content hr {
+	width: 100%;
+	display: inline-block;
+	margin: 16px 0;
+	border-top: 1px solid #dddddd;
+}
+#article-content > ul > li:has(input[type="checkbox"]) {
+	margin-left: -40px;
+}
+#article-content > ul > li:has(ul input[type="checkbox"][disabled]) {
+	margin-left: 0;
+}
+#article-content > ul > li:has(input[type="checkbox"][disabled])::marker {
+	content: none;
+}
+#article-content > ul > li:has(ul input[type="checkbox"][disabled])::marker {
+	content: initial;
+}
+#article-content dl dt {
+	padding: 0;
+	margin-top: 16px;
+	font-size: 1em;
+	font-style: italic;
+	font-weight: 600;
+}
+#article-content dl dd {
+	padding: 0 16px;
+	margin-bottom: 16px;
+}
+#article-content blockquote {
+	padding: 0 1em;
+	color: #6a737d;
+	border-left: 0.25em solid #dfe2e5;
+}
 #article-content > table {
 	border-collapse: collapse;
 	border: 1px solid #ddd;
@@ -417,6 +451,17 @@ table tr:nth-child(2n) {
 	position: absolute;
 	width: 12px;
 }
+#article-content pre .caption,
+#article-content figure.highlight figcaption {
+	left: 50%;
+	transform: translate(-50%, 0%);
+	position: absolute;
+	top: 5px;
+	font-size: 14px;
+	color: #939dac;
+	display: flex;
+	gap: 10px;
+}
 #article-content > pre:has(code:not(.highlight, .hljs)):not(.line-numbers) > code::before,
 #article-content > pre > code.hljs::before {
 	background: #fc625d;
@@ -440,7 +485,6 @@ table tr:nth-child(2n) {
 	position: absolute;
 	width: 12px;
 }
-
 #article-content > pre > code.hljs {
 	line-height: 1.6;
 }
@@ -449,7 +493,7 @@ table tr:nth-child(2n) {
 }
 #article-content figure.highlight:has(.code):not(.hljs) {
 	border-radius: 5px;
-	box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.4);
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 	padding: 38px 0 15px 0;
 	position: relative;
 	width: 100%;
@@ -663,9 +707,18 @@ table tr:nth-child(2n) {
 	#menu {
 		margin-right: 0;
 		padding-right: 0;
+		right: 5px;
+	}
+
+	#menu .menu-item {
+		padding: 5px;
 	}
 
 	#header #title {
 		padding: 5px;
+	}
+
+	#article-content figure.highlight:has(.code):not(.hljs) {
+		box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 	}
 }
