@@ -522,6 +522,14 @@ function pureFetchLoading(url) {
 		.then((html) => {
 			const parser = new DOMParser();
 			const doc = parser.parseFromString(html, "text/html");
+
+			const keywords = doc.querySelector("meta[name='keywords']")?.getAttribute("content");
+			const description = doc.querySelector("meta[name='description']")?.getAttribute("content");
+
+			document.title = doc.title;
+			document.querySelector("meta[name='keywords']").setAttribute("content", keywords);
+			document.querySelector("meta[name='description']").setAttribute("content", description);
+
 			const newContent = doc.querySelector("#content");
 
 			if (!newContent) {
@@ -530,7 +538,6 @@ function pureFetchLoading(url) {
 
 			const pageContent = document.querySelector("#content");
 			pageContent.innerHTML = newContent.innerHTML;
-			document.title = doc.title;
 			document.querySelector("#tree .active")?.classList.remove("active");
 
 			const title = decodeURI(window.location.pathname).slice(0, -1);
@@ -602,13 +609,17 @@ function setupNavigation() {
 		if (
 			target &&
 			target.matches(
-				"#menu a, #index a, #tree li.file > a[href], #tree li.directory > a[href], .post-guide a"
+				"#menu a:not(.item-icon), #index a, #tree li.file > a[href], #tree li.directory > a[href], .post-guide a"
 			)
 		) {
 			e.preventDefault();
 			const url = target.href;
 			history.pushState(null, "", url);
 			pureFetchLoading(url);
+			window.scrollTo({
+				top: 0,
+				behavior: "smooth",
+			});
 		}
 	});
 
@@ -617,6 +628,10 @@ function setupNavigation() {
 			return;
 		}
 		pureFetchLoading();
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth",
+		});
 	});
 }
 
